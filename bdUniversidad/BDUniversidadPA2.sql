@@ -52,6 +52,8 @@ exec spAgregarAlumno 'A03','Perez','Juan','Cusco','09/07/2022','E03'
 
 exec spAgregarAlumno 'A04','Coaquira','Ernesto','Cusco','12/03/2022','E04'
 
+exec spAgregarAlumno 'A05','Coraima','Ernesto','Cusco','12/03/2022','E04'
+
 
 execute spListarAlumno
 go
@@ -75,17 +77,19 @@ as begin
 			select CodError = 0, Mensaje = 'Alumno elimanado correctamente'
 		end
 
-		else select CodError = 1, Mensaje = 'Error: No se puede eliminar por que existe alumnos'
+		else select CodError = 1, Mensaje = 'Error: No se puede eliminar por que existe escuela'
 	else select CodError = 1, Mensaje = 'Error: CodAlumno no existe'
 end
 go
 
 exec spEliminarAlumno 'A01'
 go
- 
-exec spEliminarAlumno 'A03'
- 
-exec spEliminarAlumno 'A04'
+
+ exec spEliminarAlumno 'A02'
+ go
+--exec spEliminarAlumno 'A03'
+--exec spEliminarAlumno 'A04'
+--exec spEliminarAlumno 'A05'
 
 
 exec spListarAlumno
@@ -122,10 +126,14 @@ begin
 end
 
 
-exec spActualizarAlumno  'A01','Issac','Pool','Cusco','2022','E02'
+exec spActualizarAlumno  'A03','Issac','Pool','Cusco','2022','E02'
 go
-exec spActualizarAlumno  'A02','Pool','Pool','Cusco','2022','E01'
-go
+--exec spActualizarAlumno  'A02','Issac','Pool','Cusco','2022','E01'
+--go
+
+
+--exec spActualizarAlumno  'A06','Pool','Pool','Cusco','2022','E01'
+--go
 
 select * from TAlumno
 
@@ -159,13 +167,12 @@ go
 exec spListarAlumno
 go
 
-exec spBuscarAlumno 'A02','CodAlumno'
+exec spBuscarAlumno 'A04','CodAlumno'
 go 
 
-exec spBuscarAlumno 'P', 'Materno'
+exec spBuscarAlumno 'C', 'Materno'
 go 
 
-exec spBuscarAlumno 'In', 'Tipo'
-go 
+
 
 -- Presentad para el día miercoles 10 de agosto a traves de aula virtual

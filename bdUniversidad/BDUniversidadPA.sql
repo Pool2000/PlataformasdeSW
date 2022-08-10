@@ -42,15 +42,11 @@ begin
 end
 go
 
-
-
-
-exec spAgregarEscuela 'E05','Civil','Ingenieria' --duplicado
-go
-exec spAgregarEscuela 'E06','Drecho','Ingenieria' --duplicado
-go
-exec spAgregarEscuela 'E05','Psicologia','Ingenieria' -- new
-go
+exec spAgregarEscuela 'E01','Sistemas','Ingenieria'
+exec spAgregarEscuela 'E02','Civil','Ingenieria'
+exec spAgregarEscuela 'E03','Industrial','Ingenieria'
+exec spAgregarEscuela 'E04','Ambiental','Ingenieria'
+exec spAgregarEscuela 'E05','Arquitectura','Ingenieria'
 
 
 --  Actividad: Eliminar, Actualizar, Buscar, Listar
@@ -77,10 +73,10 @@ as begin
 end
 go
 
-exec spEliminarEscuela 'E05'
+exec spEliminarEscuela 'E01'
 
  
-exec spEliminarEscuela 'E04'
+exec spEliminarEscuela 'E02'
 
 
 exec spListarEscuela
@@ -117,13 +113,7 @@ begin
 end
 
 
-exec spActualizarEscuela 'E01', 'Derecho','Derecho y Ciencia Política'
-go
-
-exec spActualizarEscuela 'E04', 'Psicologia','Derecho y Ciencia Política' --New
-go
-
-exec spActualizarEscuela 'E05', 'Psicologia','Derecho y Ciencia Política'
+exec spActualizarEscuela 'E04', 'Derecho','Derecho y Ciencia Política'
 go
 
 select * from TEscuela
