@@ -47,6 +47,8 @@ go
 
 exec spAgregarEscuela 'E05','Civil','Ingenieria' --duplicado
 go
+exec spAgregarEscuela 'E06','Drecho','Ingenieria' --duplicado
+go
 exec spAgregarEscuela 'E05','Psicologia','Ingenieria' -- new
 go
 
@@ -126,38 +128,39 @@ go
 
 select * from TEscuela
 
---Buscar en la Tabla Escuela
 
+-- Procedimiento almacenado para Buscar Escuela con sensitivas y exactas
 if OBJECT_ID('spBuscarEscuela') is not null
 	drop proc spBuscarEscuela
 go
 create proc spBuscarEscuela
-@Texto varchar(50)
---@Criterio varchar(10)
-as 
+	@Texto varchar(50),
+	@Criterio varchar(50)
+as
 begin
-	--if(@Criterio = 'CodEscuela')--Busqueda exacta
+	-- Busqueda exacta para el codigo de escuela
+	if(@Criterio = 'CodEscuela')
 		select CodEscuela, Escuela, Facultad from TEscuela where CodEscuela = @Texto
-	--else if(@Criterio = 'Escuela')-- Busqueda sensitiva
-		--select Escuela, CodEscuela from TEscuela where Escuela Like '%' + @Texto + '%'	
-end
-go
+	--Busqueda sensitiva para el nombre de la escueka
+	else if (@Criterio = 'Nombre')
+		select Escuela, CodEscuela from TEscuela where Escuela like @Texto + '%'
+	else if (@Criterio = 'Tipo')
+		select Facultad, CodEscuela from TEscuela where Facultad like @Texto + '%'
 
+	end
+go
 
 exec spListarEscuela
 go
 
+exec spBuscarEscuela 'E03','CodEscuela'
+go 
 
+exec spBuscarEscuela 'D', 'Nombre'
+go 
 
-exec spBuscarEscuela 'E01'
-
-exec spBuscarEscuela 'E02'
-
-exec spBuscarEscuela 'Sis' 
-go
-
-
-
+exec spBuscarEscuela 'In', 'Tipo'
+go 
 -- Presentad para el día miercoles 10 de agosto a traves de aula virtual
 
 
